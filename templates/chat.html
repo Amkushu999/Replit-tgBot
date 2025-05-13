@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block title %}Replit Agent Bot - Chat{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">Chat with Replit Agent</h3>
+            </div>
+            <div class="card-body">
+                <div id="chat-container" class="chat-container mb-3">
+                    <!-- Chat messages will appear here -->
+                    <div class="text-center text-muted my-5" id="empty-state">
+                        <i class="fa fa-comments fa-3x mb-3"></i>
+                        <p>No messages yet. Start a conversation!</p>
+                    </div>
+                </div>
+                
+                <form id="chat-form" class="d-flex">
+                    <input type="text" id="message-input" class="form-control me-2" placeholder="Type your message..." required>
+                    <button type="submit" class="btn btn-primary" id="send-button">
+                        Send
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const chatContainer = document.getElementById('chat-container');
+        const chatForm = document.getElementById('chat-form');
+        const messageInput = document.getElementById('message-input');
+        const sendButton = document.getElementById('send-button');
+        const emptyState = document.getElementById('empty-state');
+        
+        // Load previous messages if available
+        {% if messages %}
+            emptyState.style.display = 'none';
+            {% for message in messages %}
+                addMessage("{{ message.content|e }}", 'user');
+                {% if message.response %}
+                    addMessage("{{ message.response|e }}", 'bot');
+                {% endif %}
+            {% endfor %}
+            scrollToBottom();
+        {% endif %}
+        
+        // Send message when form is submitted
+        chatForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const messageText = messageInput.value.trim();
+            if (!messageText) return;
+            
+            // Clear input and disable button while sending
+            messageInput.value = '';
+            sendButton.disabled = true;
+            
+            // Show user message immediately
+            emptyState.style.display = 'none';
+            addMessage(messageText, 'user');
+            scrollToBottom();
+            
+            try {
+                // Add loading indicator
+                const loadingElement = document.createElement('div');
+                loadingElement.className = 'message-bubble bot-message';
+                loadingElement.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Thinking...';
+                loadingElement.id = 'loading-message';
+                chatContainer.appendChild(loadingElement);
+                scrollToBottom();
+                
+                // Send message to API
+                const response = await fetch('/api/send', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: messageText })
+                });
+                
+                // Remove loading indicator
+                const loadingMsg = document.getElementById('loading-message');
+                if (loadingMsg) loadingMsg.remove();
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    addMessage(data.response, 'bot');
+                } else {
+                    const errorData = await response.json();
+                    addErrorMessage(errorData.error || 'Failed to send message');
+                }
+            } catch (error) {
+                // Remove loading indicator
+                const loadingMsg = document.getElementById('loading-message');
+                if (loadingMsg) loadingMsg.remove();
+                
+                addErrorMessage('Network error. Please try again.');
+                console.error('Error:', error);
+            } finally {
+                sendButton.disabled = false;
+                scrollToBottom();
+            }
+        });
+        
+        // Add a message to the chat container
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message-bubble ${sender === 'user' ? 'user-message' : 'bot-message'}`;
+            
+            // Make links clickable
+            const linkedText = text.replace(
+                /(https?:\/\/[^\s]+)/g, 
+                '<a href="$1" target="_blank" class="text-white">$1</a>'
+            );
+            
+            messageDiv.innerHTML = linkedText;
+            chatContainer.appendChild(messageDiv);
+        }
+        
+        // Add an error message
+        function addErrorMessage(text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message-bubble bot-message bg-danger';
+            messageDiv.textContent = `Error: ${text}`;
+            chatContainer.appendChild(messageDiv);
+        }
+        
+        // Scroll chat to bottom
+        function scrollToBottom() {
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+    });
+</script>
+{% endblock %}

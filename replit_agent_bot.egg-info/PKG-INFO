@@ -1,0 +1,31 @@
+Metadata-Version: 2.4
+Name: replit-agent-bot
+Version: 0.1.0
+Summary: A hybrid Telegram bot that connects to Replit Agent
+Author-email: Replit Team <support@replit.com>
+License: MIT
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: python-telegram-bot==13.15
+Requires-Dist: flask>=2.0.0
+Requires-Dist: selenium>=4.0.0
+Requires-Dist: websockets>=10.0
+Requires-Dist: pyjwt>=2.0.0
+Requires-Dist: cryptography>=35.0.0
+Requires-Dist: python-dotenv>=0.19.0
+Requires-Dist: gunicorn>=20.0.0
+Requires-Dist: telegram>=0.0.1
+Requires-Dist: playwright>=1.52.0
+Requires-Dist: requests>=2.32.3
+Requires-Dist: werkzeug>=3.1.3
+Requires-Dist: flask-login>=0.6.3
+Requires-Dist: flask-dance>=7.1.0
+Requires-Dist: flask-sqlalchemy>=3.1.1
+Requires-Dist: oauthlib>=3.2.2
+Requires-Dist: sqlalchemy>=2.0.40
+Requires-Dist: psycopg2-binary>=2.9.10
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0; extra == "dev"
+Requires-Dist: black>=22.0; extra == "dev"
+Requires-Dist: isort>=5.0; extra == "dev"
+Requires-Dist: flake8>=4.0; extra == "dev"

@@ -1,0 +1,324 @@
+{% extends "base.html" %}
+
+{% block title %}Replit Agent Bot - Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="mb-4">Admin Dashboard</h1>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Bot Status Card -->
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Bot Status</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between mb-3">
+                    <span>Status:</span>
+                    <span id="bot-status" class="badge {% if bot_started %}bg-success{% else %}bg-danger{% endif %}">
+                        {% if bot_started %}Running{% else %}Stopped{% endif %}
+                    </span>
+                </div>
+                <div class="d-flex justify-content-between mb-3">
+                    <span>Uptime:</span>
+                    <span id="bot-uptime">{{ status.uptime }}</span>
+                </div>
+                <div class="d-flex justify-content-between mb-3">
+                    <span>Processed Messages:</span>
+                    <span id="processed-messages">{{ status.processed_messages }}</span>
+                </div>
+                <div class="d-flex justify-content-between mb-3">
+                    <span>Active Sessions:</span>
+                    <span id="active-sessions">{{ status.active_sessions }}</span>
+                </div>
+                <div class="d-flex justify-content-between mb-3">
+                    <span>Errors:</span>
+                    <span id="errors" class="{% if status.errors > 0 %}text-danger{% endif %}">{{ status.errors }}</span>
+                </div>
+                <div class="d-grid gap-2">
+                    {% if bot_started %}
+                    <button id="stop-bot" class="btn btn-danger">Stop Bot</button>
+                    {% else %}
+                    <button id="start-bot" class="btn btn-success">Start Bot</button>
+                    {% endif %}
+                    <button id="refresh-status" class="btn btn-secondary">Refresh Status</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Connection Methods Card -->
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Connection Methods</h5>
+            </div>
+            <div class="card-body">
+                <div class="list-group">
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-1">Direct API</h6>
+                                <small>Primary connection method</small>
+                            </div>
+                            <span class="badge bg-primary">Primary</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-1">WebSocket</h6>
+                                <small>First fallback method</small>
+                            </div>
+                            <span class="badge bg-secondary">Fallback 1</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-1">Browser Automation</h6>
+                                <small>Secondary fallback method</small>
+                            </div>
+                            <span class="badge bg-secondary">Fallback 2</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-3">
+                    <p class="text-muted small">The bot will automatically switch between methods based on reliability</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Recent Messages Card -->
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Recent Messages</h5>
+                <button id="refresh-messages" class="btn btn-sm btn-light">Refresh</button>
+            </div>
+            <div class="card-body p-0">
+                <div class="list-group list-group-flush" id="recent-messages">
+                    <div class="list-group-item text-center py-4" id="loading-messages">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="mt-2">Loading messages...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Error Log Card -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mb-4">
+            <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Error Logs</h5>
+                <button id="clear-logs" class="btn btn-sm btn-light">Clear</button>
+            </div>
+            <div class="card-body">
+                <pre id="error-logs" class="bg-dark text-light p-3 rounded" style="max-height: 300px; overflow-y: auto;">No errors logged yet.</pre>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Buttons
+        const startBotBtn = document.getElementById('start-bot');
+        const stopBotBtn = document.getElementById('stop-bot');
+        const refreshStatusBtn = document.getElementById('refresh-status');
+        const refreshMessagesBtn = document.getElementById('refresh-messages');
+        const clearLogsBtn = document.getElementById('clear-logs');
+        
+        // Status elements
+        const botStatus = document.getElementById('bot-status');
+        const botUptime = document.getElementById('bot-uptime');
+        const processedMessages = document.getElementById('processed-messages');
+        const activeSessions = document.getElementById('active-sessions');
+        const errors = document.getElementById('errors');
+        
+        // Message and log elements
+        const recentMessages = document.getElementById('recent-messages');
+        const loadingMessages = document.getElementById('loading-messages');
+        const errorLogs = document.getElementById('error-logs');
+        
+        // Start bot
+        if (startBotBtn) {
+            startBotBtn.addEventListener('click', async function() {
+                try {
+                    const response = await fetch('/api/start', {
+                        method: 'POST'
+                    });
+                    
+                    if (response.ok) {
+                        window.location.reload();
+                    } else {
+                        const data = await response.json();
+                        alert('Error: ' + (data.error || 'Failed to start bot'));
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Network error. Please try again.');
+                }
+            });
+        }
+        
+        // Stop bot
+        if (stopBotBtn) {
+            stopBotBtn.addEventListener('click', async function() {
+                try {
+                    const response = await fetch('/api/stop', {
+                        method: 'POST'
+                    });
+                    
+                    if (response.ok) {
+                        window.location.reload();
+                    } else {
+                        const data = await response.json();
+                        alert('Error: ' + (data.error || 'Failed to stop bot'));
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Network error. Please try again.');
+                }
+            });
+        }
+        
+        // Refresh status
+        refreshStatusBtn.addEventListener('click', refreshStatus);
+        
+        // Refresh messages
+        refreshMessagesBtn.addEventListener('click', loadRecentMessages);
+        
+        // Clear logs
+        clearLogsBtn.addEventListener('click', function() {
+            errorLogs.textContent = 'Logs cleared.';
+        });
+        
+        // Load messages on page load
+        loadRecentMessages();
+        
+        // Auto-refresh status every 10 seconds
+        setInterval(refreshStatus, 10000);
+        
+        // Function to refresh bot status
+        async function refreshStatus() {
+            try {
+                const response = await fetch('/api/status');
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    // Update status badge
+                    if (data.is_running) {
+                        botStatus.className = 'badge bg-success';
+                        botStatus.textContent = 'Running';
+                    } else {
+                        botStatus.className = 'badge bg-danger';
+                        botStatus.textContent = 'Stopped';
+                    }
+                    
+                    // Update other status info
+                    botUptime.textContent = data.uptime;
+                    processedMessages.textContent = data.processed_messages;
+                    activeSessions.textContent = data.active_sessions;
+                    errors.textContent = data.errors;
+                    
+                    if (data.errors > 0) {
+                        errors.className = 'text-danger';
+                    } else {
+                        errors.className = '';
+                    }
+                }
+            } catch (error) {
+                console.error('Error refreshing status:', error);
+            }
+        }
+        
+        // Function to load recent messages
+        async function loadRecentMessages() {
+            try {
+                // Show loading indicator
+                loadingMessages.style.display = 'block';
+                
+                const response = await fetch('/api/messages?all=true&limit=5');
+                
+                if (response.ok) {
+                    const messages = await response.json();
+                    
+                    // Clear existing messages
+                    recentMessages.innerHTML = '';
+                    
+                    if (messages.length === 0) {
+                        const noMessagesEl = document.createElement('div');
+                        noMessagesEl.className = 'list-group-item text-center py-3';
+                        noMessagesEl.textContent = 'No messages yet';
+                        recentMessages.appendChild(noMessagesEl);
+                    } else {
+                        // Add messages to list
+                        messages.forEach(message => {
+                            const messageEl = document.createElement('div');
+                            messageEl.className = 'list-group-item';
+                            
+                            const header = document.createElement('div');
+                            header.className = 'd-flex justify-content-between align-items-center';
+                            
+                            const userInfo = document.createElement('small');
+                            userInfo.className = 'text-muted';
+                            userInfo.textContent = message.telegram_user_id ? 
+                                `Telegram User: ${message.telegram_user_id}` : 
+                                `Web User: ${message.user_id.substring(0, 8)}...`;
+                            
+                            const time = document.createElement('small');
+                            time.className = 'text-muted';
+                            time.textContent = new Date(message.created_at).toLocaleString();
+                            
+                            header.appendChild(userInfo);
+                            header.appendChild(time);
+                            
+                            const content = document.createElement('p');
+                            content.className = 'mb-1 mt-2';
+                            content.textContent = message.content.length > 50 ? 
+                                message.content.substring(0, 50) + '...' : 
+                                message.content;
+                            
+                            messageEl.appendChild(header);
+                            messageEl.appendChild(content);
+                            
+                            recentMessages.appendChild(messageEl);
+                        });
+                    }
+                } else {
+                    const errorEl = document.createElement('div');
+                    errorEl.className = 'list-group-item text-center py-3 text-danger';
+                    errorEl.textContent = 'Failed to load messages';
+                    recentMessages.innerHTML = '';
+                    recentMessages.appendChild(errorEl);
+                }
+            } catch (error) {
+                console.error('Error loading messages:', error);
+                const errorEl = document.createElement('div');
+                errorEl.className = 'list-group-item text-center py-3 text-danger';
+                errorEl.textContent = 'Network error loading messages';
+                recentMessages.innerHTML = '';
+                recentMessages.appendChild(errorEl);
+            } finally {
+                // Hide loading indicator
+                loadingMessages.style.display = 'none';
+            }
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,67 @@
+/* Additional custom styles for the dashboard */
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    font-weight: 500;
+}
+
+.status-loading, .logs-loading {
+    height: 200px;
+}
+
+pre {
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.btn-outline-info {
+    border-color: var(--bs-info);
+    color: var(--bs-info);
+}
+
+.btn-outline-info:hover {
+    background-color: var(--bs-info);
+    color: var(--bs-dark);
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+.nav-link.active {
+    color: var(--bs-info) !important;
+    font-weight: 500;
+}
+
+[data-bs-theme=dark] {
+    --bs-body-bg: #0d1117;
+    --bs-body-color: #c9d1d9;
+}
+
+.bg-secondary {
+    background-color: #161b22 !important;
+}
+
+.bg-dark {
+    background-color: #0d1117 !important;
+}

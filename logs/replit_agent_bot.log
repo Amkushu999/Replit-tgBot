@@ -1,0 +1,355 @@
+2025-05-13 15:29:58,733 - auth.token_manager - WARNING - Generated new encryption key. Please store this securely: QS240vnkw0tQbCgQyt7o8REcGqTzRinunp3CUYxvek0=
+2025-05-13 15:29:58,733 - auth.token_manager - INFO - Encryption setup successful
+2025-05-13 15:29:58,734 - auth.token_manager - INFO - No tokens file found at ./storage/tokens.enc
+2025-05-13 15:32:12,127 - auth.token_manager - WARNING - Generated new encryption key. Please store this securely: -pDkuKNJnoI3TWWUeDPqrNGT-df-cAho5zewQLNKv7c=
+2025-05-13 15:32:12,127 - auth.token_manager - INFO - Encryption setup successful
+2025-05-13 15:32:12,127 - auth.token_manager - INFO - No tokens file found at ./storage/tokens.enc
+2025-05-13 15:32:55,028 - auth.token_manager - WARNING - Generated new encryption key. Please store this securely: zi_tz3kCThphXsABI815OdD8dKH1-hq5OgTevbGQGNo=
+2025-05-13 15:32:55,029 - auth.token_manager - INFO - Encryption setup successful
+2025-05-13 15:32:55,029 - auth.token_manager - INFO - No tokens file found at ./storage/tokens.enc
+2025-05-13 15:33:00,086 - root - INFO - Starting Telegram bot...
+2025-05-13 15:33:00,087 - telegram_bot - INFO - Starting Telegram bot
+2025-05-13 15:33:00,087 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-13 15:33:00,592 - root - ERROR - Error starting bot: signal only works in main thread of the main interpreter
+2025-05-13 15:33:00,594 - root - ERROR - Traceback (most recent call last):
+  File "/home/runner/workspace/main.py", line 161, in start_bot_thread
+    start_telegram_bot()
+  File "/home/runner/workspace/telegram_bot.py", line 343, in start_telegram_bot
+    updater.idle()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/telegram/ext/updater.py", line 890, in idle
+    signal(sig, self._signal_handler)
+  File "/nix/store/clx0mcir7qw8zk36zbr4jra789g3knf6-python3-3.11.10/lib/python3.11/signal.py", line 58, in signal
+    handler = _signal.signal(_enum_to_int(signalnum), _enum_to_int(handler))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: signal only works in main thread of the main interpreter
+
+2025-05-13 15:33:00,710 - telegram_bot - INFO - Received message from 7325746010 (.): H...
+2025-05-13 15:33:01,084 - telegram_bot - INFO - Creating new router for user 7325746010
+2025-05-13 15:33:01,085 - auth.token_manager - WARNING - No tokens found for user 7325746010
+2025-05-13 15:33:01,242 - telegram_bot - INFO - Received message from 7325746010 (.): Hi...
+2025-05-13 15:33:01,242 - router.hybrid_router - INFO - Using browser automation to send message for user 7325746010
+2025-05-13 15:33:01,243 - router.hybrid_router - INFO - Initializing browser client for user 7325746010
+2025-05-13 15:33:01,244 - browser.browser_client - INFO - Initializing browser client...
+2025-05-13 15:33:01,539 - router.hybrid_router - INFO - Using browser automation to send message for user 7325746010
+2025-05-13 15:33:01,540 - router.hybrid_router - INFO - Initializing browser client for user 7325746010
+2025-05-13 15:33:01,541 - browser.browser_client - INFO - Initializing browser client...
+2025-05-13 15:33:02,086 - root - INFO - Bot started from web interface
+2025-05-13 15:33:07,917 - browser.browser_client - ERROR - Failed to initialize browser client: Message: Service /home/runner/.cache/selenium/chromedriver/linux64/136.0.7103.92/chromedriver unexpectedly exited. Status code was: 127
+
+2025-05-13 15:33:07,919 - browser.browser_client - ERROR - Traceback (most recent call last):
+  File "/home/runner/workspace/browser/browser_client.py", line 55, in start
+    self.driver = webdriver.Chrome(options=chrome_options)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/selenium/webdriver/chrome/webdriver.py", line 45, in __init__
+    super().__init__(
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/selenium/webdriver/chromium/webdriver.py", line 56, in __init__
+    self.service.start()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/selenium/webdriver/common/service.py", line 113, in start
+    self.assert_process_still_running()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/selenium/webdriver/common/service.py", line 126, in assert_process_still_running
+    raise WebDriverException(f"Service {self._path} unexpectedly exited. Status code was: {return_code}")
+selenium.common.exceptions.WebDriverException: Message: Service /home/runner/.cache/selenium/chromedriver/linux64/136.0.7103.92/chromedriver unexpectedly exited. Status code was: 127
+
+
+2025-05-13 15:33:07,919 - router.hybrid_router - WARNING - Failed to initialize browser client
+2025-05-13 15:33:07,920 - router.hybrid_router - ERROR - Error sending message: Failed to initialize browser client
+2025-05-13 15:33:07,920 - router.hybrid_router - ERROR - Traceback (most recent call last):
+  File "/home/runner/workspace/router/hybrid_router.py", line 189, in send_message
+    raise Exception("Failed to initialize browser client")
+Exception: Failed to initialize browser client
+
+2025-05-13 15:33:07,925 - browser.browser_client - ERROR - Failed to initialize browser client: Message: Service /home/runner/.cache/selenium/chromedriver/linux64/136.0.7103.92/chromedriver unexpectedly exited. Status code was: 127
+
+2025-05-13 15:33:07,927 - browser.browser_client - ERROR - Traceback (most recent call last):
+  File "/home/runner/workspace/browser/browser_client.py", line 55, in start
+    self.driver = webdriver.Chrome(options=chrome_options)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/selenium/webdriver/chrome/webdriver.py", line 45, in __init__
+    super().__init__(
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/selenium/webdriver/chromium/webdriver.py", line 56, in __init__
+    self.service.start()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/selenium/webdriver/common/service.py", line 113, in start
+    self.assert_process_still_running()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/selenium/webdriver/common/service.py", line 126, in assert_process_still_running
+    raise WebDriverException(f"Service {self._path} unexpectedly exited. Status code was: {return_code}")
+selenium.common.exceptions.WebDriverException: Message: Service /home/runner/.cache/selenium/chromedriver/linux64/136.0.7103.92/chromedriver unexpectedly exited. Status code was: 127
+
+
+2025-05-13 15:33:07,930 - router.hybrid_router - WARNING - Failed to initialize browser client
+2025-05-13 15:33:07,930 - router.hybrid_router - ERROR - Error sending message: Failed to initialize browser client
+2025-05-13 15:33:07,931 - router.hybrid_router - ERROR - Traceback (most recent call last):
+  File "/home/runner/workspace/router/hybrid_router.py", line 189, in send_message
+    raise Exception("Failed to initialize browser client")
+Exception: Failed to initialize browser client
+
+2025-05-13 15:33:30,149 - telegram_bot - INFO - Received message from 7325746010 (.): Hi...
+2025-05-13 15:33:30,415 - router.hybrid_router - INFO - Using browser automation to send message for user 7325746010
+2025-05-13 15:33:30,415 - router.hybrid_router - INFO - Initializing browser client for user 7325746010
+2025-05-13 15:33:30,415 - browser.browser_client - INFO - Initializing browser client...
+2025-05-13 15:33:30,438 - browser.browser_client - ERROR - Failed to initialize browser client: Message: Service /home/runner/.cache/selenium/chromedriver/linux64/136.0.7103.92/chromedriver unexpectedly exited. Status code was: 127
+
+2025-05-13 15:33:30,439 - browser.browser_client - ERROR - Traceback (most recent call last):
+  File "/home/runner/workspace/browser/browser_client.py", line 55, in start
+    self.driver = webdriver.Chrome(options=chrome_options)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/selenium/webdriver/chrome/webdriver.py", line 45, in __init__
+    super().__init__(
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/selenium/webdriver/chromium/webdriver.py", line 56, in __init__
+    self.service.start()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/selenium/webdriver/common/service.py", line 113, in start
+    self.assert_process_still_running()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/selenium/webdriver/common/service.py", line 126, in assert_process_still_running
+    raise WebDriverException(f"Service {self._path} unexpectedly exited. Status code was: {return_code}")
+selenium.common.exceptions.WebDriverException: Message: Service /home/runner/.cache/selenium/chromedriver/linux64/136.0.7103.92/chromedriver unexpectedly exited. Status code was: 127
+
+
+2025-05-13 15:33:30,441 - router.hybrid_router - WARNING - Failed to initialize browser client
+2025-05-13 15:33:30,441 - router.hybrid_router - ERROR - Error sending message: Failed to initialize browser client
+2025-05-13 15:33:30,442 - router.hybrid_router - ERROR - Traceback (most recent call last):
+  File "/home/runner/workspace/router/hybrid_router.py", line 189, in send_message
+    raise Exception("Failed to initialize browser client")
+Exception: Failed to initialize browser client
+
+2025-05-13 15:34:23,155 - auth.token_manager - WARNING - Generated new encryption key. Please store this securely: Sk5X3hcP7uvKH0Wshljlek7pPeTU6KEt5vBWZYT6TdI=
+2025-05-13 15:34:23,155 - auth.token_manager - INFO - Encryption setup successful
+2025-05-13 15:34:23,155 - auth.token_manager - INFO - No tokens file found at ./storage/tokens.enc
+2025-05-13 15:34:56,588 - auth.token_manager - WARNING - Generated new encryption key. Please store this securely: UDwLnZ3UIUR3rvozyTV5rnB12k8N_8t_7U6A4tB3hzE=
+2025-05-13 15:34:56,588 - auth.token_manager - INFO - Encryption setup successful
+2025-05-13 15:34:56,589 - auth.token_manager - INFO - No tokens file found at ./storage/tokens.enc
+2025-05-13 15:40:46,413 - auth.token_manager - WARNING - Generated new encryption key. Please store this securely: Qr1A5mYQLgTf2AkIr8o_mGMZKbtEa7RKx_Frni1Gzrk=
+2025-05-13 15:40:46,413 - auth.token_manager - INFO - Encryption setup successful
+2025-05-13 15:40:46,413 - auth.token_manager - INFO - No tokens file found at ./storage/tokens.enc
+2025-05-13 15:42:54,071 - auth.token_manager - WARNING - Generated new encryption key. Please store this securely: eOAVhcX63lh1LzPYcMHLrT04wi688PPC5gKG0dYQjXY=
+2025-05-13 15:42:54,072 - auth.token_manager - INFO - Encryption setup successful
+2025-05-13 15:42:54,072 - auth.token_manager - INFO - No tokens file found at ./storage/tokens.enc
+2025-05-13 15:43:33,943 - auth.token_manager - WARNING - Generated new encryption key. Please store this securely: fNiadUH0NSPUOuRqEB4w1-TVor91ztOX-3J9WIBbEL8=
+2025-05-13 15:43:33,944 - auth.token_manager - INFO - Encryption setup successful
+2025-05-13 15:43:33,944 - auth.token_manager - INFO - No tokens file found at ./storage/tokens.enc
+2025-05-13 15:43:51,662 - auth.token_manager - WARNING - Generated new encryption key. Please store this securely: pfExgsCGYs67PNtk71xIA182qPyyJp-dMHzrOcc6m7c=
+2025-05-13 15:43:51,662 - auth.token_manager - INFO - Encryption setup successful
+2025-05-13 15:43:51,662 - auth.token_manager - INFO - No tokens file found at ./storage/tokens.enc
+2025-05-13 15:44:22,025 - auth.token_manager - WARNING - Generated new encryption key. Please store this securely: xCfllc2fn7HJ-b3BDfohC-Aqi8YjXlDB3ydelcR2eTs=
+2025-05-13 15:44:22,025 - auth.token_manager - INFO - Encryption setup successful
+2025-05-13 15:44:22,025 - auth.token_manager - INFO - No tokens file found at ./storage/tokens.enc
+2025-05-13 15:44:33,392 - auth.token_manager - WARNING - Generated new encryption key. Please store this securely: OAe32GYgtoYR6EyLO5Q1XMDv0NccTVzQ7-waVcqF6fU=
+2025-05-13 15:44:33,392 - auth.token_manager - INFO - Encryption setup successful
+2025-05-13 15:44:33,392 - auth.token_manager - INFO - No tokens file found at ./storage/tokens.enc
+2025-05-13 15:44:46,752 - auth.token_manager - WARNING - Generated new encryption key. Please store this securely: SGb15h_uBvuOUEFDkFSVaYShAQau5hSV-C6itG-oVRw=
+2025-05-13 15:44:46,753 - auth.token_manager - INFO - Encryption setup successful
+2025-05-13 15:44:46,754 - auth.token_manager - INFO - No tokens file found at ./storage/tokens.enc
+2025-05-13 15:44:57,198 - auth.token_manager - WARNING - Generated new encryption key. Please store this securely: v264VyHPi2YFSmC0Xo5RdjxS8jRiGupEgPKsKUq0pHY=
+2025-05-13 15:44:57,198 - auth.token_manager - INFO - Encryption setup successful
+2025-05-13 15:44:57,198 - auth.token_manager - INFO - No tokens file found at ./storage/tokens.enc
+2025-05-13 16:02:18,098 - root - INFO - Starting Telegram bot...
+2025-05-13 16:02:18,100 - telegram_bot - INFO - Starting Telegram bot
+2025-05-13 16:02:18,101 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-13 16:02:18,596 - root - ERROR - Error starting bot: signal only works in main thread of the main interpreter
+2025-05-13 16:02:18,614 - root - ERROR - Traceback (most recent call last):
+  File "/home/runner/workspace/main.py", line 161, in start_bot_thread
+    start_telegram_bot()
+  File "/home/runner/workspace/telegram_bot.py", line 343, in start_telegram_bot
+    updater.idle()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/telegram/ext/updater.py", line 890, in idle
+    signal(sig, self._signal_handler)
+  File "/nix/store/clx0mcir7qw8zk36zbr4jra789g3knf6-python3-3.11.10/lib/python3.11/signal.py", line 58, in signal
+    handler = _signal.signal(_enum_to_int(signalnum), _enum_to_int(handler))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: signal only works in main thread of the main interpreter
+
+2025-05-13 16:02:18,715 - telegram_bot - INFO - Received message from 7325746010 (.): You...
+2025-05-13 16:02:19,099 - telegram_bot - INFO - Creating new router for user 7325746010
+2025-05-13 16:02:19,099 - auth.token_manager - WARNING - No tokens found for user 7325746010
+2025-05-13 16:02:19,250 - telegram_bot - INFO - Received message from 7325746010 (.): Hi...
+2025-05-13 16:02:19,251 - router.hybrid_router - INFO - Trying direct API client
+2025-05-13 16:02:19,251 - router.hybrid_router - INFO - Using direct API to send message for user 7325746010
+2025-05-13 16:02:19,252 - router.hybrid_router - INFO - Initializing direct API client for user 7325746010
+2025-05-13 16:02:19,252 - api.direct_api_client - INFO - No auth data provided, attempting to load from cookies file
+2025-05-13 16:02:19,255 - api.direct_api_client - INFO - Found 2/4 important cookies
+2025-05-13 16:02:19,255 - api.direct_api_client - INFO - Connecting to WebSocket at wss://replit.com/river/wsv2?user_agent=replit&client_id=lakojic990-L91c1cc6a&session_id=session-9c2f5c64e144&token_cluster=picard&timestamp=1747152139
+2025-05-13 16:02:19,338 - api.direct_api_client - ERROR - Error connecting to WebSocket: BaseEventLoop.create_connection() got an unexpected keyword argument 'extra_headers'
+2025-05-13 16:02:19,340 - api.direct_api_client - ERROR - Traceback (most recent call last):
+  File "/home/runner/workspace/api/direct_api_client.py", line 128, in connect
+    self.ws = await websockets.connect(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/websockets/asyncio/client.py", line 541, in __await_impl__
+    self.connection = await self.create_connection()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/websockets/asyncio/client.py", line 467, in create_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: BaseEventLoop.create_connection() got an unexpected keyword argument 'extra_headers'
+
+2025-05-13 16:02:19,340 - api.direct_api_client - INFO - Closing WebSocket connection
+2025-05-13 16:02:19,340 - api.direct_api_client - INFO - WebSocket connection closed
+2025-05-13 16:02:19,340 - router.hybrid_router - WARNING - Failed to initialize direct API client
+2025-05-13 16:02:19,340 - router.hybrid_router - WARNING - Direct API failed to get response, trying WebSocket API
+2025-05-13 16:02:19,340 - router.hybrid_router - INFO - Using WebSocket API to send message for user 7325746010
+2025-05-13 16:02:19,341 - router.hybrid_router - INFO - Initializing WebSocket API client for user 7325746010
+2025-05-13 16:02:19,341 - api.websocket_client - INFO - Connecting to Replit WebSocket...
+2025-05-13 16:02:19,341 - api.websocket_client - INFO - Extracted connection params: clientId=, sessionId=, tokenCluster=picard
+2025-05-13 16:02:19,341 - api.websocket_client - ERROR - Failed to extract connection parameters from auth data
+2025-05-13 16:02:19,341 - router.hybrid_router - WARNING - Failed to initialize WebSocket API client
+2025-05-13 16:02:19,341 - router.hybrid_router - WARNING - WebSocket API failed to get response, falling back to browser
+2025-05-13 16:02:19,342 - router.hybrid_router - INFO - Using browser automation to send message for user 7325746010
+2025-05-13 16:02:19,342 - router.hybrid_router - INFO - Initializing browser client for user 7325746010
+2025-05-13 16:02:19,342 - router.hybrid_router - INFO - Using Selenium browser client
+2025-05-13 16:02:19,342 - browser.browser_client - INFO - Initializing browser client...
+2025-05-13 16:02:19,532 - telegram_bot - INFO - Received message from 7325746010 (.): Hi...
+2025-05-13 16:02:19,532 - router.hybrid_router - INFO - Trying direct API client
+2025-05-13 16:02:19,533 - router.hybrid_router - INFO - Using direct API to send message for user 7325746010
+2025-05-13 16:02:19,533 - router.hybrid_router - INFO - Initializing direct API client for user 7325746010
+2025-05-13 16:02:19,533 - api.direct_api_client - INFO - No auth data provided, attempting to load from cookies file
+2025-05-13 16:02:19,534 - api.direct_api_client - INFO - Found 2/4 important cookies
+2025-05-13 16:02:19,534 - api.direct_api_client - INFO - Connecting to WebSocket at wss://replit.com/river/wsv2?user_agent=replit&client_id=lakojic990-L5fa79d45&session_id=session-d4fb859e8549&token_cluster=picard&timestamp=1747152139
+2025-05-13 16:02:19,535 - api.direct_api_client - ERROR - Error connecting to WebSocket: BaseEventLoop.create_connection() got an unexpected keyword argument 'extra_headers'
+2025-05-13 16:02:19,536 - api.direct_api_client - ERROR - Traceback (most recent call last):
+  File "/home/runner/workspace/api/direct_api_client.py", line 128, in connect
+    self.ws = await websockets.connect(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/websockets/asyncio/client.py", line 541, in __await_impl__
+    self.connection = await self.create_connection()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/websockets/asyncio/client.py", line 467, in create_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: BaseEventLoop.create_connection() got an unexpected keyword argument 'extra_headers'
+
+2025-05-13 16:02:19,536 - api.direct_api_client - INFO - Closing WebSocket connection
+2025-05-13 16:02:19,536 - api.direct_api_client - INFO - WebSocket connection closed
+2025-05-13 16:02:19,536 - router.hybrid_router - WARNING - Failed to initialize direct API client
+2025-05-13 16:02:19,536 - router.hybrid_router - WARNING - Direct API failed to get response, trying WebSocket API
+2025-05-13 16:02:19,537 - router.hybrid_router - INFO - Using WebSocket API to send message for user 7325746010
+2025-05-13 16:02:19,537 - router.hybrid_router - INFO - Initializing WebSocket API client for user 7325746010
+2025-05-13 16:02:19,537 - api.websocket_client - INFO - Connecting to Replit WebSocket...
+2025-05-13 16:02:19,537 - api.websocket_client - INFO - Extracted connection params: clientId=, sessionId=, tokenCluster=picard
+2025-05-13 16:02:19,537 - api.websocket_client - ERROR - Failed to extract connection parameters from auth data
+2025-05-13 16:02:19,538 - router.hybrid_router - WARNING - Failed to initialize WebSocket API client
+2025-05-13 16:02:19,538 - router.hybrid_router - WARNING - WebSocket API failed to get response, falling back to browser
+2025-05-13 16:02:19,538 - router.hybrid_router - INFO - Using browser automation to send message for user 7325746010
+2025-05-13 16:02:19,538 - router.hybrid_router - INFO - Initializing browser client for user 7325746010
+2025-05-13 16:02:19,538 - router.hybrid_router - INFO - Using Selenium browser client
+2025-05-13 16:02:19,538 - browser.browser_client - INFO - Initializing browser client...
+2025-05-13 16:02:19,819 - router.hybrid_router - INFO - Trying direct API client
+2025-05-13 16:02:19,819 - router.hybrid_router - INFO - Using direct API to send message for user 7325746010
+2025-05-13 16:02:19,819 - router.hybrid_router - INFO - Initializing direct API client for user 7325746010
+2025-05-13 16:02:19,819 - api.direct_api_client - INFO - No auth data provided, attempting to load from cookies file
+2025-05-13 16:02:19,820 - api.direct_api_client - INFO - Found 2/4 important cookies
+2025-05-13 16:02:19,820 - api.direct_api_client - INFO - Connecting to WebSocket at wss://replit.com/river/wsv2?user_agent=replit&client_id=lakojic990-Lbc05891f&session_id=session-96329e4e6506&token_cluster=picard&timestamp=1747152139
+2025-05-13 16:02:19,821 - api.direct_api_client - ERROR - Error connecting to WebSocket: BaseEventLoop.create_connection() got an unexpected keyword argument 'extra_headers'
+2025-05-13 16:02:19,822 - api.direct_api_client - ERROR - Traceback (most recent call last):
+  File "/home/runner/workspace/api/direct_api_client.py", line 128, in connect
+    self.ws = await websockets.connect(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/websockets/asyncio/client.py", line 541, in __await_impl__
+    self.connection = await self.create_connection()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/websockets/asyncio/client.py", line 467, in create_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: BaseEventLoop.create_connection() got an unexpected keyword argument 'extra_headers'
+
+2025-05-13 16:02:19,822 - api.direct_api_client - INFO - Closing WebSocket connection
+2025-05-13 16:02:19,822 - api.direct_api_client - INFO - WebSocket connection closed
+2025-05-13 16:02:19,822 - router.hybrid_router - WARNING - Failed to initialize direct API client
+2025-05-13 16:02:19,822 - router.hybrid_router - WARNING - Direct API failed to get response, trying WebSocket API
+2025-05-13 16:02:19,822 - router.hybrid_router - INFO - Using WebSocket API to send message for user 7325746010
+2025-05-13 16:02:19,823 - router.hybrid_router - INFO - Initializing WebSocket API client for user 7325746010
+2025-05-13 16:02:19,823 - api.websocket_client - INFO - Connecting to Replit WebSocket...
+2025-05-13 16:02:19,823 - api.websocket_client - INFO - Extracted connection params: clientId=, sessionId=, tokenCluster=picard
+2025-05-13 16:02:19,823 - api.websocket_client - ERROR - Failed to extract connection parameters from auth data
+2025-05-13 16:02:19,823 - router.hybrid_router - WARNING - Failed to initialize WebSocket API client
+2025-05-13 16:02:19,823 - router.hybrid_router - WARNING - WebSocket API failed to get response, falling back to browser
+2025-05-13 16:02:19,823 - router.hybrid_router - INFO - Using browser automation to send message for user 7325746010
+2025-05-13 16:02:19,824 - router.hybrid_router - INFO - Initializing browser client for user 7325746010
+2025-05-13 16:02:19,824 - router.hybrid_router - INFO - Using Selenium browser client
+2025-05-13 16:02:19,824 - browser.browser_client - INFO - Initializing browser client...
+2025-05-13 16:02:20,098 - root - INFO - Bot started from web interface
+2025-05-13 16:02:20,846 - browser.browser_client - ERROR - Failed to initialize browser client: Message: Service /home/runner/.cache/selenium/chromedriver/linux64/125.0.6422.141/chromedriver unexpectedly exited. Status code was: 127
+
+2025-05-13 16:02:20,849 - browser.browser_client - ERROR - Failed to initialize browser client: Message: Service /home/runner/.cache/selenium/chromedriver/linux64/125.0.6422.141/chromedriver unexpectedly exited. Status code was: 127
+
+2025-05-13 16:02:20,862 - browser.browser_client - ERROR - Traceback (most recent call last):
+  File "/home/runner/workspace/browser/browser_client.py", line 55, in start
+    self.driver = webdriver.Chrome(options=chrome_options)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/selenium/webdriver/chrome/webdriver.py", line 45, in __init__
+    super().__init__(
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/selenium/webdriver/chromium/webdriver.py", line 56, in __init__
+    self.service.start()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/selenium/webdriver/common/service.py", line 113, in start
+    self.assert_process_still_running()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/selenium/webdriver/common/service.py", line 126, in assert_process_still_running
+    raise WebDriverException(f"Service {self._path} unexpectedly exited. Status code was: {return_code}")
+selenium.common.exceptions.WebDriverException: Message: Service /home/runner/.cache/selenium/chromedriver/linux64/125.0.6422.141/chromedriver unexpectedly exited. Status code was: 127
+
+
+2025-05-13 16:02:20,862 - browser.browser_client - ERROR - Traceback (most recent call last):
+  File "/home/runner/workspace/browser/browser_client.py", line 55, in start
+    self.driver = webdriver.Chrome(options=chrome_options)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/selenium/webdriver/chrome/webdriver.py", line 45, in __init__
+    super().__init__(
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/selenium/webdriver/chromium/webdriver.py", line 56, in __init__
+    self.service.start()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/selenium/webdriver/common/service.py", line 113, in start
+    self.assert_process_still_running()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/selenium/webdriver/common/service.py", line 126, in assert_process_still_running
+    raise WebDriverException(f"Service {self._path} unexpectedly exited. Status code was: {return_code}")
+selenium.common.exceptions.WebDriverException: Message: Service /home/runner/.cache/selenium/chromedriver/linux64/125.0.6422.141/chromedriver unexpectedly exited. Status code was: 127
+
+
+2025-05-13 16:02:20,863 - router.hybrid_router - WARNING - Failed to initialize browser client
+2025-05-13 16:02:20,863 - router.hybrid_router - WARNING - Failed to initialize browser client
+2025-05-13 16:02:20,864 - router.hybrid_router - ERROR - Error sending message: Failed to initialize browser client
+2025-05-13 16:02:20,864 - router.hybrid_router - ERROR - Error sending message: Failed to initialize browser client
+2025-05-13 16:02:20,865 - router.hybrid_router - ERROR - Traceback (most recent call last):
+  File "/home/runner/workspace/router/hybrid_router.py", line 281, in send_message
+    raise Exception("Failed to initialize browser client")
+Exception: Failed to initialize browser client
+
+2025-05-13 16:02:20,866 - router.hybrid_router - ERROR - Traceback (most recent call last):
+  File "/home/runner/workspace/router/hybrid_router.py", line 281, in send_message
+    raise Exception("Failed to initialize browser client")
+Exception: Failed to initialize browser client
+
+2025-05-13 16:02:21,543 - browser.browser_client - ERROR - Failed to initialize browser client: Message: Service /home/runner/.cache/selenium/chromedriver/linux64/125.0.6422.141/chromedriver unexpectedly exited. Status code was: 127
+
+2025-05-13 16:02:21,544 - browser.browser_client - ERROR - Traceback (most recent call last):
+  File "/home/runner/workspace/browser/browser_client.py", line 55, in start
+    self.driver = webdriver.Chrome(options=chrome_options)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/selenium/webdriver/chrome/webdriver.py", line 45, in __init__
+    super().__init__(
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/selenium/webdriver/chromium/webdriver.py", line 56, in __init__
+    self.service.start()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/selenium/webdriver/common/service.py", line 113, in start
+    self.assert_process_still_running()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/selenium/webdriver/common/service.py", line 126, in assert_process_still_running
+    raise WebDriverException(f"Service {self._path} unexpectedly exited. Status code was: {return_code}")
+selenium.common.exceptions.WebDriverException: Message: Service /home/runner/.cache/selenium/chromedriver/linux64/125.0.6422.141/chromedriver unexpectedly exited. Status code was: 127
+
+
+2025-05-13 16:02:21,544 - router.hybrid_router - WARNING - Failed to initialize browser client
+2025-05-13 16:02:21,545 - router.hybrid_router - ERROR - Error sending message: Failed to initialize browser client
+2025-05-13 16:02:21,545 - router.hybrid_router - ERROR - Traceback (most recent call last):
+  File "/home/runner/workspace/router/hybrid_router.py", line 281, in send_message
+    raise Exception("Failed to initialize browser client")
+Exception: Failed to initialize browser client
+
+2025-05-13 16:03:25,060 - auth.token_manager - WARNING - Generated new encryption key. Please store this securely: Qov7HNkqjndMsbJ2JdYbnybX_nDtb1j9VACnEQy7mvo=
+2025-05-13 16:03:25,060 - auth.token_manager - INFO - Encryption setup successful
+2025-05-13 16:03:25,060 - auth.token_manager - INFO - No tokens file found at ./storage/tokens.enc
+2025-05-13 16:03:30,409 - auth.token_manager - WARNING - Generated new encryption key. Please store this securely: ousStKDNa4MzkJfxyBPrg82udiiVtSr3qI-Rg37jmbY=
+2025-05-13 16:03:30,410 - auth.token_manager - INFO - Encryption setup successful
+2025-05-13 16:03:30,410 - auth.token_manager - INFO - No tokens file found at ./storage/tokens.enc
+2025-05-13 16:03:59,168 - auth.token_manager - WARNING - Generated new encryption key. Please store this securely: N1SZjZrMHtCD0y7Aaz-GdLJy6_t3z59ZrIEpEwl8bD8=
+2025-05-13 16:03:59,168 - auth.token_manager - INFO - Encryption setup successful
+2025-05-13 16:03:59,169 - auth.token_manager - INFO - No tokens file found at ./storage/tokens.enc
+2025-05-13 16:04:32,312 - root - INFO - Starting Telegram bot in threaded mode...
+2025-05-13 16:04:32,313 - telegram_bot - INFO - Starting Telegram bot
+2025-05-13 16:04:32,313 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-13 16:04:32,795 - telegram_bot - INFO - Running in threaded mode - no signal handlers
+2025-05-13 16:04:34,312 - root - INFO - Bot started from web interface
+2025-05-13 16:06:12,907 - auth.token_manager - WARNING - Generated new encryption key. Please store this securely: 7beFewRvqnFvQYStcrxpRJ5EPnn0O9yUI7jux4tvCBE=
+2025-05-13 16:06:12,907 - auth.token_manager - INFO - Encryption setup successful
+2025-05-13 16:06:12,908 - auth.token_manager - INFO - No tokens file found at ./storage/tokens.enc

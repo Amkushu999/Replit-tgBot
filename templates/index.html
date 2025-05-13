@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Replit Agent Bot - Home{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+        <h1 class="display-4 mb-4">Welcome to Replit Agent Bot</h1>
+        <p class="lead mb-5">
+            A powerful hybrid Telegram bot that connects to Replit Agent using direct WebSocket API
+            with browser automation fallback.
+        </p>
+        
+        <div class="row mb-5">
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Chat in Telegram</h5>
+                        <p class="card-text">
+                            Connect with our bot on Telegram for a seamless messaging experience.
+                        </p>
+                        <a href="https://t.me/YourBotUsername" class="btn btn-primary">Open in Telegram</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Web Interface</h5>
+                        <p class="card-text">
+                            Use our web interface to chat with Replit Agent directly from your browser.
+                        </p>
+                        <a href="/chat" class="btn btn-primary">Start Chatting</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Admin Dashboard</h5>
+                        <p class="card-text">
+                            For administrators, access the control panel to manage the bot.
+                        </p>
+                        <a href="/dashboard" class="btn btn-secondary">Access Dashboard</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Features</h3>
+                        <ul class="list-group list-group-flush text-start">
+                            <li class="list-group-item">Hybrid communication methods with intelligent fallback</li>
+                            <li class="list-group-item">Secure encryption for all stored credentials</li>
+                            <li class="list-group-item">Command-free natural interface</li>
+                            <li class="list-group-item">Full web administration panel</li>
+                            <li class="list-group-item">Support for both Telegram and web chat</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
